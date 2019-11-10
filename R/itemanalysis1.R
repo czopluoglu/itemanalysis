@@ -1,7 +1,6 @@
-itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRUE) 
-{
+itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRUE) {
 
-      #########################################################################################
+#########################################################################################
 	# data, a data frame with N rows and n columns, where N denotes the number of subjects 
       #        and n denotes the number of items. All items should be scored using nominal 
       #        response categories. All variables (columns) must be "character". 
@@ -9,15 +8,18 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
             
 	# key,     a character vector of length n, where n denotes the number of items. 
 
-      # options, number of possible nominal options for items (e.g., "A","B","C","D")
+  # options, number of possible nominal options for items (e.g., "A","B","C","D")
 	#          make sure each item is consistent, and includes the same response options
 
-      # ngroup, number of score groups
+  # ngroup, number of score groups
 	#
 	# correction, TRUE or FALSE, if TRUE item and distractor discrimination is corrected for
 	# 		  spuriousnes by removing the item score from the total score
-      #########################################################################################
-
+#########################################################################################
+ 
+  
+    # Checks whether or not the columns are characters
+    # Make it character if not.
 
     for (i in 1:ncol(data)) {
         if (is.character(data[, i]) != TRUE) {
@@ -25,13 +27,18 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
         }
     }
 	
+    # Compare each column to the key response for that column
+    # the order of key responses should be aligned with the columns in the dataset
+    
     scored.data <- as.data.frame(matrix(nrow = nrow(data), ncol = ncol(data)))
 
     for (i in 1:ncol(scored.data)) {
-        scored.data[,i] <- ifelse(data[,i] == key[i],1,0)
-	  if(length(which(is.na(scored.data[,i])))!=0) {
+      
+      scored.data[,i] <- ifelse(data[,i] == key[i],1,0)
+	    
+      if(length(which(is.na(scored.data[,i])))!=0) {
    	     scored.data[which(is.na(scored.data[,i])==TRUE),i]=0
-	  }
+	    }
     }
 
     total.score <- rowSums(scored.data)
@@ -57,9 +64,8 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
     item.stat <- matrix(nrow=ncol(data),ncol=4)
 	  colnames(item.stat) <- c("Item Difficulty","Item Threshold","Point-Biserial","Biserial")
 
-    rnames <- ("Item 1")
-    for(i in 2:ncol(data)){ rnames <- c(rnames,paste("Item ",i,sep=""))}
-    rownames(item.stat) <- rnames	
+    rownames(item.stat) <- colnames(data)
+    
     item.stat[,1]=p
     item.stat[,2]=qnorm(1-p)
     if(correction==TRUE){ item.stat[,3]=pbis.corrected } else { item.stat[,3]=pbis }
