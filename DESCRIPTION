@@ -1,0 +1,10 @@
+Package: itemanalysis
+Version: 1.0
+Date: 2018-08-17
+Title: Classical Test Theory Item Analysis
+Author: Cengiz Zopluoglu 
+Maintainer: Cengiz Zopluoglu <c.zopluoglu@miami.edu>
+Depends: ggplot2, polycor, car
+Description: Runs classical item analysis for multiple-choice test items and polytomous items (e.g., rating scales). The statistics reported in this package can be found in any measurement textbook such as Crocker and Algina (2006, ISBN:9780495395911).
+License: GPL(>=2)
+URL: http://sites.education.miami.edu/zopluoglu/
