@@ -36,6 +36,11 @@ This function computes the traditional statistics for the classical test theory 
 
 }
 \value{
+
+    \item{item.stat}{a matrix with overall item statistics}
+    \item{dist.sel}{a matrix with distractor selection proportions}
+    \item{dist.disc}{a matrix with distractor point-biserial correlations}
+    \item{dist.disc2}{a matrix with distractor biserial correlations}
     \item{plots}{a list object storing the item trace line plots for each item}
 }
 
@@ -70,7 +75,16 @@ Cengiz Zopluoglu
                            key=key[1:10],
                            options=c("A","B","C","D"),
                            ngroup=10,
-                           correction=FALSE)
+                           correction=FALSE,
+                           span.par = .3)
+                           
+    # item.analysis$item.stat    # Item statistics 
+    
+    # item.analysis$dist.sel     # Distractor Selection Proportions
+    
+    # item.analysis$dist.disc    # Distractor point-biserial correlations
+    
+    # item.analysis$dist.disc2   # Distractor biserial correlations
 
     # item.analysis$plots[[1]]   # Item Trace Line for the first item
     # item.analysis$plots[[2]]   # Item Trace Line for the second item

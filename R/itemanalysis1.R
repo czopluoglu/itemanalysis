@@ -239,7 +239,13 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
 	cat("","\n")
 	cat("","\n")
 
-	return(list(plots=plots))
+	return(list(item.stat=item.stat,
+	            dist.sel=dist.sel,
+	            dist.disc=dist.disc,
+	            dist.disc2=dist.disc2,
+	            plots=plots))
+	
+	
 }
 
 
