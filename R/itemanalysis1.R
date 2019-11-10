@@ -96,6 +96,10 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
 #    eff.size[,4]=round(eff.size[,4],2)
 #    colnames(eff.size) <- c("Incorrect","Correct","P.value","Cohen.d")
     
+    
+    # Create the score groups with equal width based on the distribution of total score
+    # and number of groups
+    
     sgroups <- cut(total.score,breaks=ngroup)
     slevels <- levels(sgroups)
 
@@ -107,25 +111,28 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
     SG <- vector("list",ngroup)
     
     for(j in 1:ngroup){
-	SG[[j]]=which(sgroups==slevels[j])
+	    SG[[j]]=which(sgroups==slevels[j])
     }
+    
+    # Compute the proportion of selecting each response option within 
+    # each score group 
  
     prop <- vector("list",ncol(data))
-    names(prop) <- rnames
+    names(prop) <- colnames(data)
    
     for(i in 1:ncol(data)) {
 
-	dist <- matrix(nrow=length(options),ncol=ngroup)
-	colnames(dist) <- slevels
-	rownames(dist) <- options 
+      dist <- matrix(nrow=length(options),ncol=ngroup)
+	    colnames(dist) <- slevels
+	    rownames(dist) <- options 
 
-	for(g in 1:ngroup){
-	  for(o in 1:length(options)){
-		dist[o,g]=length(which(data[SG[[g]],i]==options[o]))/length(SG[[g]])
-	  }
-	}
+    	for(g in 1:ngroup){
+    	  for(o in 1:length(options)){
+      		dist[o,g]=length(which(data[SG[[g]],i]==options[o]))/length(SG[[g]])
+	      }
+    	}
 
-	prop[[i]]=dist
+    	prop[[i]]=dist
 
     }
 
@@ -133,11 +140,11 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
     dist.disc <- matrix(nrow=ncol(data),ncol=length(options))
     dist.disc2 <- matrix(nrow=ncol(data),ncol=length(options))
     colnames(dist.disc) <- options
-    rownames(dist.disc) <- rnames
+    rownames(dist.disc) <- colnames(data)
     colnames(dist.disc2) <- options
-    rownames(dist.disc2) <- rnames
+    rownames(dist.disc2) <- colnames(data)
     colnames(dist.sel) <- options
-    rownames(dist.sel) <- rnames
+    rownames(dist.sel) <- colnames(data)
 
 	for(i in 1:ncol(data)){
 	  for(o in 1:length(options)) {
@@ -153,7 +160,9 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
       }
 	  }
 	}
-
+    dist.sel <- as.data.frame(dist.sel)
+    dist.sel$Missing <- 1-rowSums(dist.sel)
+    
 	plots <- vector("list",ncol(data))
 
 	for(i in 1:ncol(data)) {
