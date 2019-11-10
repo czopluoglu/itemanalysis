@@ -1,4 +1,4 @@
-itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRUE) {
+itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRUE,span.par=.3) {
 
 #########################################################################################
 	# data, a data frame with N rows and n columns, where N denotes the number of subjects 
@@ -15,6 +15,8 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
 	#
 	# correction, TRUE or FALSE, if TRUE item and distractor discrimination is corrected for
 	# 		  spuriousnes by removing the item score from the total score
+  #
+  # span.par, this is a smoothing parameter to pass to ggplots when creating empirical ICCs
 #########################################################################################
  
   
@@ -180,13 +182,13 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
 		
 		
 		pp <- ggplot(data=d,aes_string(x="sg",y="p",group="opt",shape="opt"))+
-                 geom_line()+
-                 geom_point(size=3)+
-		             ggtitle(paste("Item ",i,sep=""))+
+                 geom_point(size=2)+
+		             geom_smooth(span=span.par,col="black",lwd=.5)+
+		             ggtitle(colnames(data)[i])+
                  theme(panel.background = element_blank(),legend.title=element_blank(),legend.key = element_blank())+
 		             theme(legend.justification=c(0,1),legend.position=c(0,1),legend.text=element_text(size=12,face="bold"))+
 		             scale_x_continuous(limits = c(0,ncol(data)),breaks=seq(0,ncol(data),ceiling(ncol(data)/10)))+
-		            scale_y_continuous(limits = c(0,1))+xlab("Score Groups")+ylab("Proporion of Being Selected")
+		             scale_y_continuous(limits = c(0,1))+xlab("Score Groups")+ylab("Proporion of Being Selected")
 		
 		plots[[i]] <- pp
 	}

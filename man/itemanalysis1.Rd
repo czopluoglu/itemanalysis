@@ -7,27 +7,33 @@ Classical Test Theory Item Analysis for Multiple-Choice Test Items
 Classicial Test Theory Item Analysis for Multiple-Choice Test Items
 }
 \usage{
-itemanalysis1(data, key, options, ngroup = ncol(data) + 1, correction = TRUE)
+itemanalysis1(data, key, options, ngroup = ncol(data) + 1, correction = TRUE,span.par=.3)
 }
 \arguments{
   \item{data}{
 a data frame with \emph{N} rows and \emph{m} columns, with \emph{N} denoting the number of subjects and \emph{m} denoting the number of items.
 }
   \item{key}{
-a vector of answer key with a length of \emph{m}
+a vector of answer key with a length of \emph{m}. The order of elements in this vector must match with the order of columns in the input dataset
 }
   \item{options}{
-a vector of response options for the test such as c("A","B","C","D")
+a vector of response options in the input dataset, e.g. c("A","B","C","D")
 }
   \item{ngroup}{
-number of score groups to be use for plotting the item trace lines
+number of score groups to be use for plotting the empirical item trace lines
 }
   \item{correction}{
 TRUE or FALSE. If it is TRUE, then an adjustment is made for point-biserial correlation.
 }
+  \item{span.par}{
+Smoothing parameter to pass to geom_smooth() in ggplot2 for drawing lines in empirical item characteristic curves.
+}
+
 }
 \details{
-To be added later.
+
+This function computes the traditional statistics for the classical test theory item analysis for item response data that can be scored as correct/incorrect. Missing data is treated as incorrect. The score groups are created based on equal width intervals depending on the total score range and number of requested score groups.
+
 }
 \value{
     \item{plots}{a list object storing the item trace line plots for each item}
@@ -61,7 +67,7 @@ Cengiz Zopluoglu
       # You should specify "data=dichotomous" to analyze based on 56 items.
 
     item.analysis <- itemanalysis1(data=dichotomous[,1:10],
-                           key=key,
+                           key=key[1:10],
                            options=c("A","B","C","D"),
                            ngroup=10,
                            correction=FALSE)
