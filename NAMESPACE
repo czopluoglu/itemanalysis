@@ -1,0 +1,21 @@
+importFrom(ggplot2, ggplot)
+importFrom(ggplot2, aes_string)
+importFrom(ggplot2, geom_line)
+importFrom(ggplot2, geom_point)
+importFrom(ggplot2, ggtitle)
+importFrom(ggplot2, theme)
+importFrom(ggplot2, element_blank)
+importFrom(ggplot2, element_text)
+importFrom(ggplot2, scale_x_continuous)
+importFrom(ggplot2, scale_y_continuous)
+importFrom(ggplot2, xlab)
+importFrom(ggplot2, ylab)
+importFrom(polycor, polyserial)
+importFrom(stats,cor)
+importFrom(stats,qnorm)
+importFrom(stats,sd)          
+import(car)
+
+export(itemanalysis1, itemanalysis2)
+
+
