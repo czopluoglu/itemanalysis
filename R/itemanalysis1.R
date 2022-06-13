@@ -202,11 +202,10 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
     cat("","\n")
     cat("Cengiz Zopluoglu","\n")
     cat("","\n")
-    cat("University of Miami","\n")
-    cat("Department of Educational and Psychological Studies","\n")
-    cat("Research, Measurement, and Evaluation Program","\n")
+    cat("University of Oregon","\n")
+    cat("College of Education","\n")
     cat("","\n")
-    cat("c.zopluoglu@miami.edu","\n")
+    cat("cen.zop@gmail.com","\n")
     cat("","\n")
     cat("Please report any programming bug or problem you experience to improve the code.","\n")
     cat("*************************************************************************","\n")
@@ -253,10 +252,3 @@ itemanalysis1 <- function (data, key, options,ngroup=ncol(data)+1,correction=TRU
   
   
 }
-
-
-
-
-
-
-

@@ -10,17 +10,17 @@ This package
 }
 \details{
 \tabular{ll}{
-Package: \tab ITEMAN\cr
+Package: \tab itemanalysis\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2015-09-29\cr
+Version: \tab 1.1\cr
+Date: \tab 2022-06-13\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
 The package can be used to run classical item analysis for multiple-choice test items and polytomously scored items (e.g., rating scale items).
 }
 \author{
-Maintainer: Cengiz Zopluoglu <c.zopluoglu@miami.edu>
+Maintainer: Cengiz Zopluoglu <cen.zop@gmail.com>
 }
 \keyword{ package }
 \seealso{

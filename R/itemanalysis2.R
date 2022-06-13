@@ -1,4 +1,4 @@
-itemanalysis2 <- function (data, options,ngroup=ncol(data)+1,correction=TRUE, verbose=T) 
+itemanalysis2 <- function (data, options,ngroup=ncol(data)+1,correction=TRUE, span.par=.3,verbose=T) 
 {
   
   #########################################################################################
@@ -144,11 +144,10 @@ itemanalysis2 <- function (data, options,ngroup=ncol(data)+1,correction=TRUE, ve
     cat("","\n")
     cat("Cengiz Zopluoglu","\n")
     cat("","\n")
-    cat("University of Miami","\n")
-    cat("Department of Educational and Psychological Studies","\n")
-    cat("Research, Measurement, and Evaluation Program","\n")
+    cat("University of Oregon","\n")
+    cat("College of Education","\n")
     cat("","\n")
-    cat("c.zopluoglu@miami.edu","\n")
+    cat("cen.zop@gmail.com","\n")
     cat("","\n")
     cat("Please report any programming bug or problem you experience to improve the code.","\n")
     cat("*************************************************************************","\n")
@@ -186,13 +185,9 @@ itemanalysis2 <- function (data, options,ngroup=ncol(data)+1,correction=TRUE, ve
   } else {
     
   }
-  
-  return(list(plots=plots))
+  return(list(item.stat=item.stat,
+              dist.sel=dist.sel,
+              dist.disc=dist.disc,
+              dist.disc2=dist.disc2,
+              plots=plots))
 }
-
-
-
-
-
-
-

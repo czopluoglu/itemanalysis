@@ -1,3 +1,9 @@
+itemanalysis_1.1 (2022-06-13)
+
+  * maintainer email address is updated
+  * verbose argument is added so user can turn off the text output
+  * span.par argument is for smoothing empirical ICCs 
+
 itemanalysis_1.0 (2018-08-17)
 
   * initial release on CRAN
